@@ -20,7 +20,6 @@ export default function RecordList() {
 
     // This method fetches the records from the database.
     async function getRecords() {
-        console.log(postCounter)
         const response = await fetch(`http://localhost:5000/record/${postCounter}`);
 
         if (!response.ok) {
