@@ -13,11 +13,14 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 // This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
+recordRoutes.route("/record/:counter").get(function (req, res) {
     let db_connect = dbo.getDb("posts");
     db_connect
         .collection("records")
         .find({})
+        .sort({ $natural: -1 })
+        .skip(parseInt(req.params.counter))
+        .limit(10)
         .toArray(function (err, result) {
             if (err) throw err;
             res.json(result);
@@ -41,10 +44,8 @@ recordRoutes.route("/record/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
         text: req.body.text,
-        likes: req.body.likes,
         time: req.body.time,
         company: req.body.company,
-        type: req.body.type,
     };
     db_connect.collection("records").insertOne(myobj, function (err, res) {
         if (err) throw err;
