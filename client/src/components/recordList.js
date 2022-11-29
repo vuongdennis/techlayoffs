@@ -20,7 +20,7 @@ export default function RecordList() {
 
     // This method fetches the records from the database.
     async function getRecords() {
-        const response = await fetch(`http://localhost:5000/record/${postCounter}`);
+        const response = await fetch(`https://techlayoffs.fyi/api/record/${postCounter}`);
 
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
