@@ -17,9 +17,9 @@ export default function Form() {
 
     function getTime() {
         var today = new Date()
-        var date = `${today.getMonth()}/${today.getDate()}/${today.getFullYear().toString().slice(-2)}`
+        var date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear().toString().slice(-2)}`
         var time = `${today.getHours()}:${('0' + today.getMinutes()).slice(-2)}:${today.getSeconds()}`
-        return `${time} UTC on ${date}`
+        return `${time} PST on ${date}`
     }
 
     async function onSubmit(e) {
